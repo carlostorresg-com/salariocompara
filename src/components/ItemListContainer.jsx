@@ -3,8 +3,8 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Item from './Item';
 import splitAmount from '../utils/splitAmount';
 
-const ItemListContainer = () => {
-  const [items, setItems] = useState([]);
+const ItemListContainer = ({ initialItems }) => {
+  const [items, setItems] = useState(initialItems ?? []);
   const [newItemDescription, setNewItemDescription] = useState('');
   const [editingIndex, setEditingIndex] = useState(-1);
   const [editedAmount, setEditedAmount] = useState('');
@@ -16,8 +16,8 @@ const ItemListContainer = () => {
 
     const newItem = {
       emoji: '🎁', // Replace with your emoji
-      description: name,
-      amount: amount,
+      name,
+      amount,
     };
 
     setItems([...items, newItem]);
@@ -30,7 +30,7 @@ const ItemListContainer = () => {
   };
 
   const calculateTotal = () => {
-    return items.reduce((total, item) => total + item.amount, 0);
+    return items.reduce((total, item) => total + +item.amount, 0);
   };
 
   const handleKeyDown = (event) => {
@@ -58,8 +58,8 @@ const ItemListContainer = () => {
 
   // TODO Fix flashy reorder on DragEnd
   return (
-    <div className="max-w-md mx-auto p-4 border-0 rounded-2xl drop-shadow-lg bg-white">
-      <h6 className="mb-4">Item List</h6>
+    <div className="max-w-md mx-auto p-4 mt-6 border-0 rounded-2xl drop-shadow-lg bg-white md:w-5/12">
+      <h6 className="mb-4">Company 1</h6>
       <div className="space-y-2">
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="itemList" direction="vertical">
@@ -98,8 +98,8 @@ const ItemListContainer = () => {
           value={newItemDescription}
           onChange={(e) => setNewItemDescription(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Agrega un beneficio..."
-          className="flex-grow p-2 rounded-l-md border outline-none focus:ring focus:ring-indigo-200"
+          placeholder='Agrega beneficio ej. "Aguinaldo 12k"'
+          className="flex-grow p-2 text-sm rounded-l-md border outline-none focus:ring focus:ring-indigo-200"
         />
         <button
           onClick={addItem}

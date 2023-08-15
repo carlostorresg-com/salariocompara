@@ -30,42 +30,42 @@ const benefitsYearly = [
     emoji: '🏝️',
     name: 'Prima Vacacional',
     description: '10 días al 25%',
-    amount: '8000',
+    amount: 8000,
   },
   {
     emoji: '💵',
     name: 'Fondo de Ahorro',
     description: 'topado al 8%',
-    amount: '40000',
+    amount: 40000,
   },
   {
     emoji: '🤓',
     name: 'Learning Stipend',
     description: 'Cursos, conferencias...',
-    amount: '10000',
+    amount: 10000,
   },
   {
     emoji: '🩺',
     name: 'SGMM',
     description: 'Plan Superior AXA',
-    amount: '31500',
+    amount: 31500,
   },
   {
     emoji: '🛟',
     name: 'Seguro de Vida',
-    amount: '3000',
+    amount: 3000,
   },
   {
     emoji: '💻',
     name: 'WFH',
     description: 'Para mejorar tu home office',
-    amount: '3300',
+    amount: 3300,
   },
   {
     emoji: '🔻',
     name: 'Deducción',
     description: 'Ejemplo de una deducción',
-    amount: '-2500',
+    amount: -2500,
   },
 ];
 
@@ -124,7 +124,7 @@ const App = () => {
 
   return (
     <div className="flex justify-center mt-10">
-      <ItemListContainer />
+      <ItemListContainer initialItems={benefitsYearly} />
       {salaryColumns.map((column) => (
         <SalaryColumn
           key={column.currency}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 const Item = ({
   item,
@@ -11,20 +11,30 @@ const Item = ({
   removeItem,
   provided,
 }) => {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (editingIndex === index && inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.select();
+    }
+  }, [editingIndex, index]);
+
   return (
     <div
       key={index}
-      className="group flex items-center justify-between p-2 mb-2 bg-gray-100 rounded hover:bg-gray-200 transition duration-200 text-sm text-slate-700"
+      className="group flex items-center justify-between p-2 mb-2 bg-gray-50 rounded hover:bg-gray-100 transition duration-200 text-sm text-slate-700"
       ref={provided.innerRef}
       {...provided.draggableProps}
       {...provided.dragHandleProps}
     >
       <span className="mr-2">{item.emoji}</span>
-      <span className="flex-grow">{item.description}</span>
+      <span className="flex-grow">{item.name}</span>
       {editingIndex === index ? (
         // TODO Fix: input width, it's too big
         <span className="grow-0 w-15">
           <input
+            ref={inputRef}
             type="text"
             className="border p-1 outline-none rounded-md text-sm text-right focus:ring focus:ring-indigo-100"
             value={editedAmount}
@@ -36,6 +46,7 @@ const Item = ({
                 setEditedAmount('');
               }
             }}
+            // TODO Fix onBlur event, it's not always working
             onBlur={(_e) => {
               handleAmountEdit(index, editedAmount);
               setEditingIndex(-1);
@@ -47,6 +58,7 @@ const Item = ({
         <span
           role="button"
           tabIndex="0"
+          className="hover:font-medium"
           onClick={() => {
             setEditingIndex(index);
             setEditedAmount(item.amount?.toString());
@@ -58,12 +70,20 @@ const Item = ({
             }
           }}
         >
-          $ {item.amount.toLocaleString()}
+          {item.amount < 0 ? (
+            <p className="relative z-10 inline-block m-0 leading-normal text-transparent bg-gradient-to-tl from-red-600 to-rose-400 text-sm bg-clip-text">
+              - $ {(item.amount * -1).toLocaleString()}
+            </p>
+          ) : (
+            <p className="inline-block m-0 leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">
+              $ {(+item.amount).toLocaleString()}
+            </p>
+          )}
         </span>
       )}
       <button
         className={
-          'text-gray-400 pl-2 hidden ' +
+          'text-gray-400 ml-2 hidden ' +
           (editingIndex === index
             ? ''
             : 'group-hover:block hover:text-gray-600')
