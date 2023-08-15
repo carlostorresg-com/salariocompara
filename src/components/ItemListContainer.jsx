@@ -56,9 +56,10 @@ const ItemListContainer = () => {
     setItems(updatedItems);
   };
 
+  // TODO Fix flashy reorder on DragEnd
   return (
-    <div className="max-w-md mx-auto p-4 border rounded-md shadow-lg bg-white">
-      <h1 className="text-xl font-bold mb-4">Item List</h1>
+    <div className="max-w-md mx-auto p-4 border-0 rounded-2xl drop-shadow-lg bg-white">
+      <h6 className="mb-4">Item List</h6>
       <div className="space-y-2">
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="itemList" direction="vertical">

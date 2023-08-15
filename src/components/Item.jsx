@@ -1,4 +1,3 @@
-// Item.js
 import React from 'react';
 
 const Item = ({
@@ -23,23 +22,27 @@ const Item = ({
       <span className="mr-2">{item.emoji}</span>
       <span className="flex-grow">{item.description}</span>
       {editingIndex === index ? (
-        <input
-          type="text"
-          className="border p-1 grow-0 w-40 outline-none rounded-md text-sm text-right focus:ring focus:ring-indigo-100"
-          value={editedAmount}
-          onChange={(e) => setEditedAmount(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
+        // TODO Fix: input width, it's too big
+        <span className="grow-0 w-15">
+          <input
+            type="text"
+            className="border p-1 outline-none rounded-md text-sm text-right focus:ring focus:ring-indigo-100"
+            value={editedAmount}
+            onChange={(e) => setEditedAmount(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === 'Escape') {
+                handleAmountEdit(index, editedAmount);
+                setEditingIndex(-1);
+                setEditedAmount('');
+              }
+            }}
+            onBlur={(_e) => {
               handleAmountEdit(index, editedAmount);
               setEditingIndex(-1);
               setEditedAmount('');
-            } else if (e.key === 'Escape') {
-              handleAmountEdit(index, editedAmount);
-              setEditingIndex(-1);
-              setEditedAmount('');
-            }
-          }}
-        />
+            }}
+          />
+        </span>
       ) : (
         <span
           role="button"
@@ -59,7 +62,12 @@ const Item = ({
         </span>
       )}
       <button
-        className="text-gray-400 pl-2 hidden group-hover:block hover:text-gray-600"
+        className={
+          'text-gray-400 pl-2 hidden ' +
+          (editingIndex === index
+            ? ''
+            : 'group-hover:block hover:text-gray-600')
+        }
         onClick={() => removeItem(index)}
       >
         <svg
