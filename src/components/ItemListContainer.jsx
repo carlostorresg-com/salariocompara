@@ -58,7 +58,7 @@ const ItemListContainer = ({ initialItems }) => {
 
   // TODO Fix flashy reorder on DragEnd
   return (
-    <div className="max-w-md mx-auto p-4 mt-6 border-0 rounded-2xl drop-shadow-lg bg-white md:w-5/12">
+    <div className="max-w-sm mx-auto p-6 mt-6 border-0 rounded-2xl drop-shadow-lg bg-white md:w-5/12">
       <h6 className="mb-4">Company 1</h6>
       <div className="space-y-2">
         <DragDropContext onDragEnd={handleDragEnd}>

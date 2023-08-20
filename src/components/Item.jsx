@@ -23,7 +23,7 @@ const Item = ({
   return (
     <div
       key={index}
-      className="group flex items-center justify-between p-2 mb-2 bg-gray-50 rounded hover:bg-gray-100 transition duration-200 text-sm text-slate-700"
+      className="group flex items-center justify-between p-2 my-1 rounded hover:bg-gray-50 transition duration-200 text-sm text-slate-700"
       ref={provided.innerRef}
       {...provided.draggableProps}
       {...provided.dragHandleProps}
@@ -31,6 +31,7 @@ const Item = ({
       <span className="mr-2">{item.emoji}</span>
       <span className="flex-grow">{item.name}</span>
       {editingIndex === index ? (
+        // TODO Refactor out into EditableMoneyLabel
         // TODO Fix: input width, it's too big
         <span className="grow-0 w-15">
           <input
@@ -105,6 +106,8 @@ const Item = ({
           />
         </svg>
       </button>
+      {/* TODO Add description */}
+      {/* TODO Figure out how to do display $ after taxes */}
     </div>
   );
 };

@@ -25,7 +25,24 @@ const benefits = [
 ];
 
 const benefitsYearly = [
-  { emoji: '🎄', name: 'Aguinaldo', description: '30 días', amount: '31500' },
+  {
+    emoji: '💰',
+    name: 'Sueldo Bruto',
+    description: 'antes de impuestos',
+    amount: 95600,
+  },
+  {
+    emoji: '💵',
+    name: 'WFH Stipend',
+    description: 'topado al 8%',
+    amount: 1000,
+  },
+  {
+    emoji: '🎄',
+    name: 'Aguinaldo',
+    description: '30 días',
+    amount: 31500,
+  },
   {
     emoji: '🏝️',
     name: 'Prima Vacacional',
@@ -57,9 +74,21 @@ const benefitsYearly = [
   },
   {
     emoji: '💻',
-    name: 'WFH',
+    name: 'WFH set up',
     description: 'Para mejorar tu home office',
     amount: 3300,
+  },
+  {
+    emoji: '💵',
+    name: 'Quarterly Bonus',
+    description: 'Para mejorar tu home office',
+    amount: 42000,
+  },
+  {
+    emoji: '📚',
+    name: 'Certifications Bonus (1,500 usd)',
+    description: 'Exam reimbursement + bonus',
+    amount: 0,
   },
   {
     emoji: '🔻',
