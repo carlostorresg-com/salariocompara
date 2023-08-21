@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import SalaryColumn from './components/SalaryColumn';
 import ItemListContainer from './components/ItemListContainer';
+import EmptyItemListContainer from './components/EmptyItemListContainer';
 
 // const initialConcepts = [
 //   { concept: 'Base Salary', amount: 50000 },
@@ -99,78 +99,10 @@ const benefitsYearly = [
 ];
 
 const App = () => {
-  const [salaryColumns, setSalaryColumns] = useState([
-    {
-      currency: 'MXN',
-      benefits: [...benefits],
-      benefitsYearly: [...benefitsYearly],
-    },
-  ]);
-
-  const handleUpdateAmount = (currency, concept, amount) => {
-    setSalaryColumns((prevColumns) =>
-      prevColumns.map((column) => {
-        if (column.currency === currency) {
-          return {
-            ...column,
-            concepts: column.concepts.map((c) =>
-              c.concept === concept ? { ...c, amount: amount } : c,
-            ),
-          };
-        }
-        return column;
-      }),
-    );
-  };
-
-  const handleAddBenefit = (currency, newBenefit) => {
-    setSalaryColumns((prevColumns) =>
-      prevColumns.map((column) => {
-        if (column.currency === currency) {
-          return {
-            ...column,
-            benefits: [...column.benefits, { benefit: newBenefit, amount: 0 }],
-          };
-        }
-        return column;
-      }),
-    );
-  };
-
-  const handleRemoveBenefit = (currency, benefit) => {
-    setSalaryColumns((prevColumns) =>
-      prevColumns.map((column) => {
-        if (column.currency === currency) {
-          return {
-            ...column,
-            benefits: column.benefits.filter((c) => c.benefit !== benefit),
-          };
-        }
-        return column;
-      }),
-    );
-  };
-
   return (
     <div className="flex justify-center mt-10">
       <ItemListContainer initialItems={benefitsYearly} />
-      {salaryColumns.map((column) => (
-        <SalaryColumn
-          key={column.currency}
-          currency={column.currency}
-          benefits={column.benefits}
-          benefitsYearly={column.benefitsYearly}
-          onUpdateAmount={(concept, amount) =>
-            handleUpdateAmount(column.currency, concept, amount)
-          }
-          onAddBenefit={(newBenefit) =>
-            handleAddBenefit(column.currency, newBenefit)
-          }
-          onRemoveBenefit={(benefit) =>
-            handleRemoveBenefit(column.currency, benefit)
-          }
-        />
-      ))}
+      <EmptyItemListContainer />
     </div>
   );
 };
