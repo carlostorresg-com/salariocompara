@@ -58,10 +58,9 @@ const ItemListContainer = ({ initialItems }) => {
 
   // TODO Fix flashy reorder on DragEnd
   return (
-    <div className="max-w-sm mx-auto p-6 mt-6 border-0 rounded-2xl drop-shadow-lg bg-white md:w-5/12">
-      {/* <h6 className="mb-4">Company 1</h6> */}
+    <div className="w-96 p-6 mt-6 border-0 rounded-2xl drop-shadow-lg bg-white">
       <p className="text-xl font-semibold mt-2 mb-4">Cloud Architect</p>
-      <div className="text-gray-400">
+      <div className="text-gray-400 p-2">
         <div className="flex space-x-2 text-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +76,10 @@ const ItemListContainer = ({ initialItems }) => {
               d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <p>103,000 MXN</p>
+          <p className="flex-grow">103,000 MXN</p>
+          <p className="inline-block m-0 leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">
+            $ {(78326).toLocaleString()}
+          </p>
         </div>
         <div className="flex space-x-2 text-sm my-3">
           <svg
@@ -94,7 +96,15 @@ const ItemListContainer = ({ initialItems }) => {
               d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             />
           </svg>
-          <p>10 días vacaciones</p>
+          <p className="flex-grow">
+            10 días vacaciones{' '}
+            <span className="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">
+              25%
+            </span>
+          </p>
+          <p className="inline-block m-0 leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">
+            $ {(8000).toLocaleString()}
+          </p>
         </div>
         <div className="flex space-x-2 text-sm my-3">
           <svg
@@ -111,8 +121,10 @@ const ItemListContainer = ({ initialItems }) => {
               d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
             />
           </svg>
-
-          <p>30 días aguinaldo</p>
+          <p className="flex-grow">30 días aguinaldo</p>
+          <p className="inline-block m-0 leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">
+            $ {(31500).toLocaleString()}
+          </p>
         </div>
       </div>
       <div className="border-t-2"></div>

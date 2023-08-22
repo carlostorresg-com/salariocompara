@@ -1,53 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
 import ItemListContainer from './components/ItemListContainer';
 import EmptyItemListContainer from './components/EmptyItemListContainer';
 
-// const initialConcepts = [
-//   { concept: 'Base Salary', amount: 50000 },
-//   { concept: 'Bonus', amount: 2000 },
-//   { concept: 'Vacation Allowance', amount: 1500 },
-// ];
-
-const benefits = [
-  {
-    emoji: '💰',
-    name: 'Sueldo Bruto',
-    description: 'antes de impuestos',
-    amount: 109518,
-  },
-  {
-    emoji: '🏠',
-    name: 'WFH Stipend',
-    description: 'para trabajar desde casa',
-    amount: 1000,
-  },
-];
-
 const benefitsYearly = [
-  {
-    emoji: '💰',
-    name: 'Sueldo Bruto',
-    description: 'antes de impuestos',
-    amount: 95600,
-  },
   {
     emoji: '💵',
     name: 'WFH Stipend',
     description: 'topado al 8%',
     amount: 1000,
-  },
-  {
-    emoji: '🎄',
-    name: 'Aguinaldo',
-    description: '30 días',
-    amount: 31500,
-  },
-  {
-    emoji: '🏝️',
-    name: 'Prima Vacacional',
-    description: '10 días al 25%',
-    amount: 8000,
   },
   {
     emoji: '💵',
@@ -97,6 +58,17 @@ const benefitsYearly = [
     amount: -2500,
   },
 ];
+
+function AddCardIcon({ onClick }) {
+  return (
+    <div
+      className="w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-center cursor-pointer absolute right-2 bottom-2 hover:bg-indigo-600"
+      onClick={onClick}
+    >
+      <span className="text-lg">+</span>
+    </div>
+  );
+}
 
 const App = () => {
   return (
