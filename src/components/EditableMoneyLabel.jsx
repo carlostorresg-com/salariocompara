@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-const EditableMoneyLabel = ({ index, amount, onUpdate }) => {
+const EditableMoneyLabel = ({ index, amount, onSave }) => {
   const inputRef = useRef(null);
 
   const [editingIndex, setEditingIndex] = useState(-1);
@@ -26,14 +26,14 @@ const EditableMoneyLabel = ({ index, amount, onUpdate }) => {
             onChange={(e) => setEditedAmount(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === 'Escape') {
-                onUpdate(index, editedAmount);
+                onSave(index, editedAmount);
                 setEditingIndex(-1);
                 setEditedAmount('');
               }
             }}
             // TODO Fix onBlur event, it's not always working
             onBlur={(_e) => {
-              onUpdate(index, editedAmount);
+              onSave(index, editedAmount);
               setEditingIndex(-1);
               setEditedAmount('');
             }}

@@ -16,7 +16,7 @@ const Item = ({ item, index, handleAmountEdit, removeItem, provided }) => {
       <EditableMoneyLabel
         index={index}
         amount={item.amount}
-        onUpdate={handleAmountEdit}
+        onSave={handleAmountEdit}
       />
       <DeleteIcon index={index} onClick={removeItem} />
       {/* TODO Add description */}
