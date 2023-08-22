@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import ItemListContainer from './components/ItemListContainer';
 import EmptyItemListContainer from './components/EmptyItemListContainer';
 
-const benefitsYearly = [
+const sampleBenefits = [
   {
     emoji: '💵',
     name: 'WFH Stipend',
@@ -59,22 +59,52 @@ const benefitsYearly = [
   },
 ];
 
-function AddCardIcon({ onClick }) {
-  return (
-    <div
-      className="w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-center cursor-pointer absolute right-2 bottom-2 hover:bg-indigo-600"
-      onClick={onClick}
-    >
-      <span className="text-lg">+</span>
-    </div>
-  );
-}
-
 const App = () => {
+  const initialCards = [
+    {
+      id: 1,
+      title: 'Cloud Architect',
+      salary: 103000,
+      salaryAfterTax: 73500,
+      currency: 'MXN',
+      holidays: 10,
+      holidaysPct: 25,
+      aguinaldoDays: 30,
+      aguinaldo: 30500,
+      benefits: sampleBenefits,
+    },
+  ];
+
+  const [cards, setCards] = useState(initialCards);
+
+  const addCard = () => {
+    console.log('add card');
+    const emptyCard = {
+      id: 2,
+      title: null,
+      salary: 0,
+      salaryAfterTax: 0,
+      currency: 'MXN',
+      holidays: 10,
+      holidaysPct: 25,
+      aguinaldoDays: 15,
+      aguinaldo: 0,
+      benefits: [],
+    };
+
+    setCards([...cards, emptyCard]);
+  };
+
   return (
     <div className="flex justify-center mt-10">
-      <ItemListContainer initialItems={benefitsYearly} />
-      <EmptyItemListContainer />
+      {cards.map((card) => (
+        <ItemListContainer key={card.id} {...card} />
+      ))}
+      {cards.length < 3 ? (
+        <EmptyItemListContainer handleOnClick={addCard} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
