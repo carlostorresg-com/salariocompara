@@ -20,8 +20,6 @@ const ItemListContainer = ({
   );
   const [items, setItems] = useState(benefits ?? []);
   const [newItemDescription, setNewItemDescription] = useState('');
-  const [editingIndex, setEditingIndex] = useState(-1);
-  const [editedAmount, setEditedAmount] = useState('');
 
   const addItem = () => {
     if (newItemDescription.trim() === '') return;
@@ -159,10 +157,6 @@ const ItemListContainer = ({
                       <Item
                         item={item}
                         index={index}
-                        editingIndex={editingIndex}
-                        editedAmount={editedAmount}
-                        setEditingIndex={setEditingIndex}
-                        setEditedAmount={setEditedAmount}
                         handleAmountEdit={handleAmountEdit}
                         removeItem={() => removeItem(index)}
                         provided={provided}
