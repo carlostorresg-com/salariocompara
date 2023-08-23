@@ -3,7 +3,7 @@ import React from 'react';
 const EmptyItemListContainer = ({ handleOnClick }) => {
   return (
     <div
-      className="w-18 p-6 flex ml-8 m-6 border-2 border-dashed border-gray-300 rounded-2xl drop-shadow-lg  hover:bg-gray-100"
+      className="w-18 p-6 flex ml-8 m-6 border-2 border-dashed border-gray-300 cursor-pointer rounded-2xl drop-shadow-lg  hover:bg-gray-100"
       onClick={handleOnClick}
     >
       <div className="flex flex-grow items-center ">

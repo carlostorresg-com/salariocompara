@@ -64,8 +64,8 @@ const App = () => {
     {
       id: 1,
       title: 'Cloud Architect',
-      salary: 103000,
-      salaryAfterTax: 73500,
+      gross: 103000,
+      net: 73500,
       currency: 'MXN',
       holidays: 10,
       holidaysPct: 25,

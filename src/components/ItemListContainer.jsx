@@ -5,12 +5,13 @@ import splitAmount from '../utils/splitAmount';
 import CurrencyIcon from './reusable/CurrencyIcon';
 import CalendarIcon from './reusable/CalendarIcon';
 import GiftIcon from './reusable/GiftIcon';
+import EditableMoneyCurrencyLabel from './EditableMoneyCurrencyLabel';
 
 const ItemListContainer = ({
   id,
   title,
-  salary,
-  salaryAfterTax,
+  gross,
+  net,
   currency,
   holidays,
   holidaysPct,
@@ -21,6 +22,8 @@ const ItemListContainer = ({
   const [titlePosition, setTitlePosition] = useState(
     title ?? 'Nombre de la posición',
   );
+  const [grossIncome, setGrossIncome] = useState(gross);
+  const [netIncome, setNetIncome] = useState(net);
   const [items, setItems] = useState(benefits ?? []);
   const [newItemDescription, setNewItemDescription] = useState('');
 
@@ -71,18 +74,30 @@ const ItemListContainer = ({
     setItems(updatedItems);
   };
 
+  const handleSalaryEdit = (newGrossSalary) => {
+    if (!newGrossSalary) return;
+    setGrossIncome(+newGrossSalary); // coerce to number
+    // TODO Calculate net income
+    setNetIncome(newGrossSalary * 0.75);
+  };
+
   // TODO Fix flashy reorder on DragEnd
   return (
     <div className="w-96 p-6 m-6 border-0 rounded-2xl drop-shadow-lg bg-white">
       <p className="text-xl font-semibold mt-2 mb-4">{titlePosition}</p>
       <div className="text-gray-400 p-2">
-        <div className="flex space-x-2 text-sm">
+        <div className="flex space-x-2 text-sm items-center">
           <CurrencyIcon />
-          <p className="flex-grow">
+          {/* <p className="flex-grow">
             {salary.toLocaleString()} {currency}
-          </p>
+          </p> */}
+          <EditableMoneyCurrencyLabel
+            value={grossIncome}
+            currency={currency}
+            onSave={handleSalaryEdit}
+          />
           <p className="inline-block m-0 leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">
-            $ {salaryAfterTax.toLocaleString()}
+            $ {netIncome.toLocaleString()}
           </p>
         </div>
         <div className="flex space-x-2 text-sm my-3">
@@ -140,7 +155,7 @@ const ItemListContainer = ({
           value={newItemDescription}
           onChange={(e) => setNewItemDescription(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder='Agrega beneficio ej. "Bono 12k"'
+          placeholder='Agrega beneficio "Bono 12k"'
           className="flex-grow p-2 text-sm rounded-l-md border outline-none focus:ring focus:ring-indigo-200"
         />
         <button
