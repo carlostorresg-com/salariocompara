@@ -82,8 +82,8 @@ const App = () => {
     const emptyCard = {
       id: 2,
       title: null,
-      salary: 0,
-      salaryAfterTax: 0,
+      gross: 0,
+      net: 0,
       currency: 'MXN',
       holidays: 10,
       holidaysPct: 25,
